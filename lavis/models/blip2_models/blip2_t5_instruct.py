@@ -389,7 +389,7 @@ class Blip2T5Instruct(Blip2Base):
 
         encoder_atts = torch.cat([atts_t5, input_tokens.attention_mask], dim=1)
 
-        with self.maybe_autocast(dtype=torch.bfloat16):
+        with self.maybe_autocast(dtype=torch.float16):
             inputs_embeds = self.t5_model.encoder.embed_tokens(input_tokens.input_ids)
             inputs_embeds = torch.cat([inputs_t5, inputs_embeds], dim=1)
 
